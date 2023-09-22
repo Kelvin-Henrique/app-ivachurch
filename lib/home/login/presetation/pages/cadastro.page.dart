@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:http/http.dart' as http;
+import 'package:iva_app/home/login/data/models/usuario.model.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -202,8 +207,9 @@ class _CadastroPageState extends State<CadastroPage> {
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
+                    cadastrarUsuario();
                     // Verificar se a senha e a confirmação de senha são iguais
-                    if (_passwordController.text !=
+                   /*  if (_passwordController.text !=
                         _confirmPasswordController.text) {
                       showDialog(
                         context: context,
@@ -223,7 +229,7 @@ class _CadastroPageState extends State<CadastroPage> {
                           );
                         },
                       );
-                    }
+                    } */
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.yellow,
@@ -262,5 +268,65 @@ class _CadastroPageState extends State<CadastroPage> {
         ],
       ),
     );
+  }
+
+  Future<void> cadastrarUsuario() async {
+    final usuario = UsuarioModel(
+      id: 0,
+      nome: _nomeCompletoController.text,
+      email: _emailController.text,
+      celular: _celularController.text,
+      senha: _senhaController.text,
+    );
+
+    final jsonData = jsonEncode(usuario.toJson());
+
+    final response = await http.post(
+      Uri.parse(
+          'https://localhost:7181/Usuario/cadastrar'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    );
+
+    if (response.statusCode == 200) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('DEU CERTO '),
+            content: const Text('PARABENS ! GLORIA A DEUS'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('ERRO'),
+            content:
+                const Text('NÃO DESISTA !! TA QUASE LÁ'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
