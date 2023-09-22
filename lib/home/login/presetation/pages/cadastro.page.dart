@@ -12,6 +12,10 @@ class CadastroPage extends StatefulWidget {
 }
 
 class _CadastroPageState extends State<CadastroPage> {
+  TextEditingController _celularController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _senhaController = TextEditingController();
+  TextEditingController _nomeCompletoController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -72,10 +76,10 @@ class _CadastroPageState extends State<CadastroPage> {
         backgroundColor: Colors.black,
       ),
       body: ListView(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -88,7 +92,19 @@ class _CadastroPageState extends State<CadastroPage> {
                   height: 60.0,
                   color: Colors.black,
                 ),
-                SizedBox(height: 35),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "CADASTRO",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    backgroundColor: Colors.black,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 35),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Nome Completo',
@@ -96,8 +112,9 @@ class _CadastroPageState extends State<CadastroPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  controller: _nomeCompletoController,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Celular',
@@ -105,8 +122,9 @@ class _CadastroPageState extends State<CadastroPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  controller: _celularController,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Email',
@@ -114,8 +132,9 @@ class _CadastroPageState extends State<CadastroPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                  controller: _emailController,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextField(
                   obscureText: !_passwordVisible,
                   onChanged: (password) {
@@ -139,13 +158,14 @@ class _CadastroPageState extends State<CadastroPage> {
                       },
                     ),
                   ),
+                  controller: _senhaController,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 LinearProgressIndicator(
                   value: _passwordStrength,
                   backgroundColor: Colors.grey,
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 _buildPasswordCriteria(
                     'Pelo menos 8 caracteres', _hasMinLength),
                 _buildPasswordCriteria(
@@ -153,7 +173,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 _buildPasswordCriteria(
                     'Pelo menos um caractere especial', _hasSpecialChar),
                 _buildPasswordCriteria('Pelo menos um número', _hasNumber),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextField(
                   obscureText: !_passwordVisible,
                   controller: _confirmPasswordController,
@@ -179,7 +199,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
                     // Verificar se a senha e a confirmação de senha são iguais
@@ -189,12 +209,12 @@ class _CadastroPageState extends State<CadastroPage> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: Text('ERRO'),
-                            content: Text(
+                            title: const Text('ERRO'),
+                            content: const Text(
                                 'A senha e a confirmação de senha não são iguais.'),
                             actions: <Widget>[
                               TextButton(
-                                child: Text('OK'),
+                                child: const Text('OK'),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
@@ -212,7 +232,7 @@ class _CadastroPageState extends State<CadastroPage> {
                       borderRadius: BorderRadius.circular(40),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'CADASTRAR',
                     style: TextStyle(
                       fontSize: 16,
@@ -237,7 +257,7 @@ class _CadastroPageState extends State<CadastroPage> {
             isMet ? Icons.check_circle : Icons.circle,
             color: isMet ? Colors.green : Colors.red,
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Text(text),
         ],
       ),
