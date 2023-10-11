@@ -209,7 +209,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   onPressed: () {
                     cadastrarUsuario();
                     // Verificar se a senha e a confirmação de senha são iguais
-                   /*  if (_passwordController.text !=
+                    /*  if (_passwordController.text !=
                         _confirmPasswordController.text) {
                       showDialog(
                         context: context,
@@ -272,7 +272,6 @@ class _CadastroPageState extends State<CadastroPage> {
 
   Future<void> cadastrarUsuario() async {
     final usuario = UsuarioModel(
-      id: 0,
       nome: _nomeCompletoController.text,
       email: _emailController.text,
       celular: _celularController.text,
@@ -282,8 +281,7 @@ class _CadastroPageState extends State<CadastroPage> {
     final jsonData = jsonEncode(usuario.toJson());
 
     final response = await http.post(
-      Uri.parse(
-          'https://localhost:7181/Usuario/cadastrar'),
+      Uri.parse('https://10.0.2.2:7181/Usuario/cadastrar'),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -297,25 +295,6 @@ class _CadastroPageState extends State<CadastroPage> {
           return AlertDialog(
             title: const Text('DEU CERTO '),
             content: const Text('PARABENS ! GLORIA A DEUS'),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('ERRO'),
-            content:
-                const Text('NÃO DESISTA !! TA QUASE LÁ'),
             actions: <Widget>[
               TextButton(
                 child: const Text('OK'),
