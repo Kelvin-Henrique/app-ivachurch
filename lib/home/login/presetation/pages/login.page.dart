@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iva_app/home/presentation/pages/home.page.dart';
+import 'package:iva_app/home/presentation/pages/bem-vindo.page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => BemVindoPage()),
                     );
                       },
                       style: ElevatedButton.styleFrom(

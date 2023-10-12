@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iva_app/app.module.dart';
-import 'package:iva_app/home/presentation/pages/home.page.dart';
+import 'package:iva_app/home/presentation/pages/bem-vindo.page.dart';
 import 'dart:io';
 
 void main() {
@@ -19,7 +19,7 @@ void main() {
   runApp(ModularApp(
     module: AppModule(),
     child: MaterialApp(
-      home: HomePage(),
+      home: BemVindoPage(),
     ),
   ));
 }
