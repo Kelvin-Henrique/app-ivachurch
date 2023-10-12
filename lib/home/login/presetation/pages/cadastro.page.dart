@@ -1,26 +1,21 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:http/http.dart' as http;
 import 'package:iva_app/home/login/data/models/usuario.model.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: CadastroPage(),
-  ));
-}
+import 'package:iva_app/home/login/data/repositories/cadastro.repository.dart';
+import 'package:iva_app/home/login/presetation/pages/login.page.dart';
 
 class CadastroPage extends StatefulWidget {
+  const CadastroPage({Key? key}) : super(key: key);
+
   @override
   State<CadastroPage> createState() => _CadastroPageState();
 }
 
 class _CadastroPageState extends State<CadastroPage> {
-  TextEditingController _celularController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _senhaController = TextEditingController();
-  TextEditingController _nomeCompletoController = TextEditingController();
+  var cadastroRepository = CadastroRepository();
+  final TextEditingController _celularController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _nomeCompletoController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -40,35 +35,16 @@ class _CadastroPageState extends State<CadastroPage> {
   }
 
   void _updatePasswordStrength(String password) {
-    // Lógica para calcular a força da senha
-    // Implemente sua própria lógica aqui para avaliar a senha
-    // A variável _passwordStrength deve ser um valor entre 0.0 e 1.0
-    // 0.0 indica fraca, 1.0 indica forte
-    // Atualize _passwordStrength e os critérios conforme necessário
-
-    // Exemplo simples: verificar se a senha tem pelo menos 8 caracteres
     _hasMinLength = password.length >= 8;
-
-    // Exemplo: verificar se a senha contém pelo menos uma letra maiúscula
     _hasUppercase = password.contains(RegExp(r'[A-Z]'));
-
-    // Exemplo: verificar se a senha contém pelo menos um caractere especial
     _hasSpecialChar = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
-
-    // Exemplo: verificar se a senha contém pelo menos um número
     _hasNumber = password.contains(RegExp(r'[0-9]'));
-
-    // Calcular a força da senha com base nos critérios
     int criteriaMet = 0;
     if (_hasMinLength) criteriaMet++;
     if (_hasUppercase) criteriaMet++;
     if (_hasSpecialChar) criteriaMet++;
     if (_hasNumber) criteriaMet++;
-
-    // Atualizar a força da senha (um quarto do progresso por critério)
     _passwordStrength = criteriaMet / 4.0;
-
-    // Atualizar a interface do usuário
     setState(() {});
   }
 
@@ -182,9 +158,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 TextField(
                   obscureText: !_passwordVisible,
                   controller: _confirmPasswordController,
-                  onChanged: (confirmPassword) {
-                    // Você pode adicionar aqui a lógica para verificar se a senha e a confirmação são iguais
-                  },
+                  onChanged: (confirmPassword) {},
                   decoration: InputDecoration(
                     hintText: 'Confirme a Senha',
                     border: OutlineInputBorder(
@@ -207,29 +181,18 @@ class _CadastroPageState extends State<CadastroPage> {
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
-                    cadastrarUsuario();
-                    // Verificar se a senha e a confirmação de senha são iguais
-                    /*  if (_passwordController.text !=
-                        _confirmPasswordController.text) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('ERRO'),
-                            content: const Text(
-                                'A senha e a confirmação de senha não são iguais.'),
-                            actions: <Widget>[
-                              TextButton(
-                                child: const Text('OK'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    } */
+                    UsuarioModel dadosUsuario = UsuarioModel(
+                        nome: _nomeCompletoController.text,
+                        celular: _celularController.text,
+                        email: _emailController.text,
+                        senha: _senhaController.text);
+                    cadastroRepository
+                        .cadastrarUsuario(dadosUsuario)
+                        .then((value) {
+                      if (value) {
+                        sucessoCadastro();
+                      }
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.yellow,
@@ -254,6 +217,24 @@ class _CadastroPageState extends State<CadastroPage> {
     );
   }
 
+  sucessoCadastro() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Cadastro"),
+            content: const Text("Cadastro realizado com sucesso!"),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login');
+                  },
+                  child: const Text("OK"))
+            ],
+          );
+        });
+  }
+
   Widget _buildPasswordCriteria(String text, bool isMet) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -268,44 +249,5 @@ class _CadastroPageState extends State<CadastroPage> {
         ],
       ),
     );
-  }
-
-  Future<void> cadastrarUsuario() async {
-    final usuario = UsuarioModel(
-      nome: _nomeCompletoController.text,
-      email: _emailController.text,
-      celular: _celularController.text,
-      senha: _senhaController.text,
-    );
-
-    final jsonData = jsonEncode(usuario.toJson());
-
-    final response = await http.post(
-      Uri.parse('https://10.0.2.2:7181/Usuario/cadastrar'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonData,
-    );
-
-    if (response.statusCode == 200) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('DEU CERTO '),
-            content: const Text('PARABENS ! GLORIA A DEUS'),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
   }
 }

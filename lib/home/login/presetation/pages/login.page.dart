@@ -57,14 +57,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 16),
                     TextField(
-                      obscureText: !_passwordVisible, // Use o estado para ocultar/exibir a senha
-                      controller: _passwordController, // Adicione o controlador
+                      obscureText: !_passwordVisible, 
+                      controller: _passwordController, 
                       decoration: InputDecoration(
                         hintText: 'Senha',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        // Adicione o ícone de olho ao campo de senha
                         suffixIcon: IconButton(
                           icon: Icon(
                             _passwordVisible ? Icons.visibility : Icons.visibility_off,
@@ -80,7 +79,6 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () {
-                        // Lógica para ação de login
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.yellow,
