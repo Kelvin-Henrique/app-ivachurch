@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+/* import 'package:flutter/material.dart';
 class PainelDefault extends StatelessWidget{
   const PainelDefault({Key? key}) : super(key: key);
 
@@ -15,139 +12,74 @@ class PainelDefault extends StatelessWidget{
           title: Image.asset('assets/images/logoIva.png', fit: BoxFit.cover, height: 50.0,),
           backgroundColor: Colors.black,
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(decoration: const BoxDecoration(
-                color: Colors.black
-              ),
-                child: Column( children: [
-                  Image.asset('assets/images/logoBranco.png', fit: BoxFit.cover, height: 108.0,),
-                  const SizedBox(height: 10.0,),
-                  Row (children: [
-                    const FaIcon(FontAwesomeIcons.locationDot, color: Colors.yellow,size: 12,),
-                    const SizedBox(height: 13,),
-                    const Text(" Campus Diadema", style: TextStyle(color: Colors.yellow, fontSize: 12),)
-
-                  ],)
-                ],
-                ),
-                
-              
-              ),
-              Column(
-                children: [
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: const Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    onPressed: (){}, 
-                    icon: const Icon(Icons.person, color: Colors.yellow), 
-                    label: const Text('ATUALIZAR CADASTRO'),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: const Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    onPressed: (){}, 
-                    icon: const FaIcon(FontAwesomeIcons.bookBible, color: Colors.yellow), 
-                    label: const Text('       DEVOCIONAL            '),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){} , 
-                    icon: const FaIcon(FontAwesomeIcons.church, color: Colors.yellow), 
-                    label: const Text('       NOSSA IGREJA       '),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){}, 
-                    icon: const FaIcon(FontAwesomeIcons.peopleRoof, color: Colors.yellow), 
-                    label: const Text('GRUPOS DE CONEXÃO'),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){} , 
-                    icon: const FaIcon(FontAwesomeIcons.peopleGroup, color: Colors.yellow), 
-                    label: const Text('       VOLUNTÁRIOS       '),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){}, 
-                    icon: const FaIcon(FontAwesomeIcons.handHoldingDollar, color: Colors.yellow), 
-                    label: const Text('      GENEROSIDADE       '),
-                  ),
-                 ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){}, 
-                    icon: const Icon(Icons.attach_money, color: Colors.yellow), 
-                    label: const Text('BALANÇO FINANCEIRO'),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){} , 
-                    icon: const Icon(Icons.school_outlined, color: Colors.yellow), 
-                    label: const Text('         IVA COLLEGE         '),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){} , 
-                    icon: const FaIcon(FontAwesomeIcons.personPraying, color: Colors.yellow), 
-                    label: const Text('  PEDIDOS DE ORAÇÃO  '),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){} , 
-                    icon: const FaIcon(FontAwesomeIcons.clock, color: Colors.yellow), 
-                    label: const Text(' HORÁRIOS DE CULTOS '),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){} , 
-                    icon: const FaIcon(FontAwesomeIcons.locationDot, color: Colors.yellow), 
-                    label: const Text('  NOSSOS ENDEREÇOS  '),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){} , 
-                    icon: const FaIcon(FontAwesomeIcons.whatsapp, color: Colors.yellow), 
-                    label: const Text('           WHATSAPP           '),
-                  ),
-                  ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    ),
-                    onPressed: (){} , 
-                    icon: const Icon(Icons.calendar_month, color: Colors.yellow), 
-                    label: const Text('            EVENTOS            '),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
       ),
     );
+  }
+} */
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:iva_app/home/presentation/pages/bem-vindo.page.dart';
+
+class PainelDefault extends StatefulWidget {
+  final Function? onTap;
+  final Widget? child;
+  final bool menuOpen;
+  final bool? backButton;
+  const PainelDefault({this.onTap, this.menuOpen = false,  this.child, this.backButton}) : super();
+
+  @override
+  _PainelDefaultState createState() => new _PainelDefaultState();
+}
+
+class _PainelDefaultState extends State<PainelDefault> {
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        child: Scaffold(
+          appBar: AppBar(
+            leading: widget.backButton == true
+                ? IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                    onPressed: () async {
+                      Modular.to.pushNamed('/bem-vindo');
+                    },
+                  )
+                : null,
+            iconTheme: Theme.of(context).iconTheme,
+            elevation: 0,
+            centerTitle: true,
+            title: Container(
+              width: 90,
+              child: Image.asset(
+                "assets/images/logo.png",
+                width: 50,
+                height: 60
+              ),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.exit_to_app,
+                  color: Colors.white,
+                ),
+                onPressed: () async {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BemVindoPage()),
+                    );
+                },
+              ),
+            ],
+            backgroundColor: Colors.black,
+            
+          ),
+          body: Center(
+            child: widget.child,
+          ),
+        ));
   }
 }

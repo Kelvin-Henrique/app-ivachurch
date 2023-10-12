@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iva_app/home/presentation/pages/bem-vindo.page.dart';
+import 'package:iva_app/home/presentation/pages/home.page.dart';
 
 class HomeModule extends Module {
   @override
@@ -10,6 +11,11 @@ class HomeModule extends Module {
         ChildRoute(
           '/bem-vindo',
           child: (_, args) => BemVindoPage(),
+          transition: TransitionType.noTransition,
+        ),
+        ChildRoute(
+          '/home',
+          child: (_, args) => HomePage(),
           transition: TransitionType.noTransition,
         ),
       ];

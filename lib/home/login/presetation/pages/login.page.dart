@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:iva_app/home/presentation/pages/bem-vindo.page.dart';
+import 'package:iva_app/home/login/data/repositories/cadastro.repository.dart';
+import 'package:iva_app/home/presentation/pages/home.page.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -10,6 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _passwordVisible = false;
+  var cadastroRepository = CadastroRepository();
 
   @override
   void dispose() {
@@ -82,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BemVindoPage()),
+                      MaterialPageRoute(builder: (context) => HomePage()),
                     );
                       },
                       style: ElevatedButton.styleFrom(
