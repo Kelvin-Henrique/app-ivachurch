@@ -75,76 +75,87 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/logo.png',
-              color: Colors.yellow,
-              height: 200,
-              width: 460,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: const AssetImage('assets/images/img_home2.jpg'), // Substitua pelo caminho da sua imagem de fundo
+            fit: BoxFit.cover, // Pode ajustar o modo de exibição da imagem, se necessário
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.5), // Ajuste a opacidade para controlar o escurecimento
+              BlendMode.darken, // Isso aplica o filtro apenas ao fundo
             ),
-            SizedBox(height: 5),
-            TypewriterAnimatedTextKit(
-              speed: Duration(milliseconds: 100),
-              totalRepeatCount: 1,
-              pause: Duration(seconds: 1),
-              displayFullTextOnTap: true,
-              text: welcomeMessages,
-              textStyle: TextStyle(
-                fontSize: 36,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                'assets/images/logo.png',
+                color: Colors.yellow,
+                height: 200,
+                width: 460,
               ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 40),
-            SlideInButton(
-              delay: 0.5, // Atraso em segundos antes da animação começar
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginPage(),
-                )); 
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  minimumSize: Size(200, 50),
+              SizedBox(height: 5),
+              TypewriterAnimatedTextKit(
+                speed: Duration(milliseconds: 100),
+                totalRepeatCount: 1,
+                pause: Duration(seconds: 1),
+                displayFullTextOnTap: true,
+                text: welcomeMessages,
+                textStyle: TextStyle(
+                  fontSize: 36,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: Text('LOGIN'),
+                textAlign: TextAlign.center,
               ),
-            ),
-            SizedBox(height: 20),
-            SlideInButton(
-              delay: 1.0, // Atraso em segundos antes da animação começar
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CadastroPage(),
-                ));
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+              SizedBox(height: 40),
+              SlideInButton(
+                delay: 0.5, // Atraso em segundos antes da animação começar
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    onPrimary: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    minimumSize: Size(200, 50),
                   ),
-                  minimumSize: Size(200, 50),
+                  child: Text('LOGIN'),
                 ),
-                child: Text('CADASTRE-SE'),
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              SlideInButton(
+                delay: 1.0, // Atraso em segundos antes da animação começar
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CadastroPage(),
+                        ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    onPrimary: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    minimumSize: Size(200, 50),
+                  ),
+                  child: Text('CADASTRE-SE'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomSheet: Container(
@@ -177,110 +188,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-/* import 'package:flutter/material.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-
-
-class HomePage extends StatelessWidget {
-  final List<String> welcomeMessages = [
-    "Olá,",
-    "seja bem-vindo",
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/logo.png',
-              color: Colors.yellow,
-              height: 200,
-              width: 460,
-            ),
-            SizedBox(height: 5), // Reduzi a distância para 5 pixels
-            TypewriterAnimatedTextKit(
-              speed: Duration(milliseconds: 100),
-              totalRepeatCount: 1,
-              pause: Duration(seconds: 1),
-              displayFullTextOnTap: true,
-              text: welcomeMessages,
-              textStyle: TextStyle(
-                fontSize: 36,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: () {
-                // Lógica para ação do botão "Entrar"
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                minimumSize: Size(200, 50),
-              ),
-              child: Text('ENTRAR'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Lógica para ação do botão "Cadastrar-se"
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                minimumSize: Size(200, 50),
-              ),
-              child: Text('CADASTRE-SE'),
-            ),
-          ],
-        ),
-      ),
-      bottomSheet: Container(
-        color: Colors.black,
-        padding: EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-              icon: FaIcon(FontAwesomeIcons.facebook, color: Colors.white),
-              onPressed: () {
-                // Lógica para abrir o link do Facebook
-              },
-            ),
-            IconButton(
-              icon: FaIcon(FontAwesomeIcons.twitter, color: Colors.white),
-              onPressed: () {
-                // Lógica para abrir o link do Twitter
-              },
-            ),
-            IconButton(
-              icon: FaIcon(FontAwesomeIcons.instagram, color: Colors.white),
-              onPressed: () {
-                // Lógica para abrir o link do Instagram
-              },
-            ),
-            
-          ],
-        ),
-      ),
-    );
-  }
-}
- */

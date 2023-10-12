@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iva_app/home/presentation/pages/home.page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -44,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 60.0,
                       color: Colors.black,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     TextField(
@@ -55,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextField(
                       obscureText: !_passwordVisible, 
                       controller: _passwordController, 
@@ -76,9 +77,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () {
+                        Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.yellow,
@@ -87,17 +92,16 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(40),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'ENTRAR',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextButton(
                       onPressed: () {
-                        // Lógica para ação de "Esqueceu a senha?"
                       },
-                      child: Text(
+                      child: const Text(
                         'Esqueceu a senha?',
                         style: TextStyle(
                           color: Colors.blue,

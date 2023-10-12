@@ -227,7 +227,10 @@ class _CadastroPageState extends State<CadastroPage> {
             actions: [
               ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/login');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
                   },
                   child: const Text("OK"))
             ],

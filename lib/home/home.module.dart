@@ -8,7 +8,7 @@ class HomeModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(
-          '/',
+          '/home',
           child: (_, args) => HomePage(),
           transition: TransitionType.noTransition,
         ),

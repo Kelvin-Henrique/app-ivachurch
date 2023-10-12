@@ -45,6 +45,7 @@ dependencies:
   get_it: ^7.2.0
   intl: ^0.17.0
   http: ^0.13.3
+  carousel_slider: ^4.2.1
 
 
 dev_dependencies:
@@ -74,6 +75,9 @@ flutter:
   - assets/images/logo.png
   - assets/images/logoIva.png
   - assets/images/logoBranco.png
+  - assets/images/img_home.jpg
+  - assets/images/img_home2.jpg
+  - assets/images/img_home3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
