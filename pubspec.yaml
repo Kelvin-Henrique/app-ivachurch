@@ -46,6 +46,8 @@ dependencies:
   intl: ^0.17.0
   http: ^0.13.3
   carousel_slider: ^4.2.1
+  flutter_launcher_icons: ^0.9.2
+  flutter_native_splash: ^1.2.0
 
 
 dev_dependencies:
@@ -104,3 +106,20 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+flutter_icons:
+  ios: true
+  android: true
+  remove_alpha_ios: true
+  image_path_ios: "assets/images/logo_black.png"
+  image_path_android: "assets/images/logo_black.png"
+  adaptive_icon_background: "assets/images/logo_black.png"
+  adaptive_icon_foreground: "assets/images/logo_black.png"
+
+
+flutter_native_splash:
+  color: "#000000"
+  image: "assets/images/logo_black.png"
+  android: true
+  ios: true
