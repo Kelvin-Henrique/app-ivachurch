@@ -3,6 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  modal_progress_hud_nsn
+  url_launcher_windows
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

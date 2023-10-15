@@ -13,7 +13,7 @@ class CadastroRepository extends ICadastroRepository {
     final jsonData = jsonEncode(usuario.toJson());
 
       final response = await http.post(
-        Uri.parse('https://254b-2804-14d-78a6-adf8-2cda-2e7f-2821-a1c3.ngrok-free.app/Usuario/cadastrar/'),
+        Uri.parse('https://5baf-2804-14d-78a6-adf8-2cda-2e7f-2821-a1c3.ngrok-free.app/Usuario/cadastrar/'),
         headers: {
           'Content-Type': 'application/json',
         },

@@ -12,7 +12,7 @@ class CadastroDataSource extends ICadastroDataSource {
 
  @override
  Future cadastrarUsuario(UsuarioModel usuario) async {
-  var response = await dio?.post("https://10.0.2.2:7181/Usuario/cadastrar", data: {
+  var response = await dio?.post("https://5baf-2804-14d-78a6-adf8-2cda-2e7f-2821-a1c3.ngrok-free.app/Usuario/cadastrar", data: {
     "nome": usuario.nome,
     "email": usuario.email,
     "celular": usuario.celular,

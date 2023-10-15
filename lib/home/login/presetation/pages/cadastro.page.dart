@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iva_app/home/loader/presentation/pages/loader.view.dart';
 import 'package:iva_app/home/login/data/models/usuario.model.dart';
 import 'package:iva_app/home/login/data/repositories/cadastro.repository.dart';
 import 'package:iva_app/home/login/presetation/pages/login.page.dart';
@@ -50,169 +51,171 @@ class _CadastroPageState extends State<CadastroPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        centerTitle: true,
+    return Loader(
+      child: Scaffold(
         backgroundColor: Colors.black,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(20.0),
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              children: <Widget>[
-                Image.asset(
-                  'assets/images/logoIva.png',
-                  fit: BoxFit.cover,
-                  height: 60.0,
-                  color: Colors.black,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "CADASTRO",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    backgroundColor: Colors.black,
-                    color: Colors.white,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.black,
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(20.0),
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/images/logoIva.png',
+                    fit: BoxFit.cover,
+                    height: 60.0,
+                    color: Colors.black,
                   ),
-                ),
-                const SizedBox(height: 35),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Nome Completo',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                  const SizedBox(
+                    height: 10,
                   ),
-                  controller: _nomeCompletoController,
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Celular',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  controller: _celularController,
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  controller: _emailController,
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  obscureText: !_passwordVisible,
-                  onChanged: (password) {
-                    _updatePasswordStrength(password);
-                  },
-                  decoration: InputDecoration(
-                    hintText: 'Digite a Senha',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _passwordVisible = !_passwordVisible;
-                        });
-                      },
-                    ),
-                  ),
-                  controller: _senhaController,
-                ),
-                const SizedBox(height: 16),
-                LinearProgressIndicator(
-                  value: _passwordStrength,
-                  backgroundColor: Colors.grey,
-                ),
-                const SizedBox(height: 8),
-                _buildPasswordCriteria(
-                    'Pelo menos 8 caracteres', _hasMinLength),
-                _buildPasswordCriteria(
-                    'Pelo menos uma letra maiúscula', _hasUppercase),
-                _buildPasswordCriteria(
-                    'Pelo menos um caractere especial', _hasSpecialChar),
-                _buildPasswordCriteria('Pelo menos um número', _hasNumber),
-                const SizedBox(height: 16),
-                TextField(
-                  obscureText: !_passwordVisible,
-                  controller: _confirmPasswordController,
-                  onChanged: (confirmPassword) {},
-                  decoration: InputDecoration(
-                    hintText: 'Confirme a Senha',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _passwordVisible = !_passwordVisible;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    UsuarioModel dadosUsuario = UsuarioModel(
-                        nome: _nomeCompletoController.text,
-                        celular: _celularController.text,
-                        email: _emailController.text,
-                        senha: _senhaController.text);
-                    cadastroRepository
-                        .cadastrarUsuario(dadosUsuario)
-                        .then((value) {
-                      if (value) {
-                        sucessoCadastro();
-                      }
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.yellow,
-                    onPrimary: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                  ),
-                  child: const Text(
-                    'CADASTRAR',
+                  const Text(
+                    "CADASTRO",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 25,
                       fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 35),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Nome Completo',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    controller: _nomeCompletoController,
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Celular',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    controller: _celularController,
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    controller: _emailController,
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    obscureText: !_passwordVisible,
+                    onChanged: (password) {
+                      _updatePasswordStrength(password);
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Digite a Senha',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                      ),
+                    ),
+                    controller: _senhaController,
+                  ),
+                  const SizedBox(height: 16),
+                  LinearProgressIndicator(
+                    value: _passwordStrength,
+                    backgroundColor: Colors.grey,
+                  ),
+                  const SizedBox(height: 8),
+                  _buildPasswordCriteria(
+                      'Pelo menos 8 caracteres', _hasMinLength),
+                  _buildPasswordCriteria(
+                      'Pelo menos uma letra maiúscula', _hasUppercase),
+                  _buildPasswordCriteria(
+                      'Pelo menos um caractere especial', _hasSpecialChar),
+                  _buildPasswordCriteria('Pelo menos um número', _hasNumber),
+                  const SizedBox(height: 16),
+                  TextField(
+                    obscureText: !_passwordVisible,
+                    controller: _confirmPasswordController,
+                    onChanged: (confirmPassword) {},
+                    decoration: InputDecoration(
+                      hintText: 'Confirme a Senha',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      UsuarioModel dadosUsuario = UsuarioModel(
+                          nome: _nomeCompletoController.text,
+                          celular: _celularController.text,
+                          email: _emailController.text,
+                          senha: _senhaController.text);
+                      cadastroRepository
+                          .cadastrarUsuario(dadosUsuario)
+                          .then((value) {
+                        if (value) {
+                          sucessoCadastro();
+                        }
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.yellow,
+                      onPrimary: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                    ),
+                    child: const Text(
+                      'CADASTRAR',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
