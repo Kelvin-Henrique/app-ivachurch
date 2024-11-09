@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39256892746",
+    "project_id": "ivaapp-7917b",
+    "storage_bucket": "ivaapp-7917b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39256892746:android:9c1bb0f23fdec7c4ac0db3",
+        "android_client_info": {
+          "package_name": "com.example.iva_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEm9WKwi1S32XYALohfxnO7zorPG5TIA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

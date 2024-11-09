@@ -9,7 +9,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class Loader extends StatefulWidget {
   final Widget child;
 
-  const Loader({required this.child});
+  const Loader({Key? key, required this.child}) : super(key: key);
 
   @override
   _LoaderState createState() => _LoaderState();
@@ -24,7 +24,7 @@ class _LoaderState extends State<Loader> {
         builder: (_) => ModalProgressHUD(
             color: Colors.white,
             progressIndicator: SpinKitThreeBounce(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).primaryColor,
               size: 50.0,
             ),
             inAsyncCall: controller.loading,
